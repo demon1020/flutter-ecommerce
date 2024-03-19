@@ -18,7 +18,6 @@ class ApiResponse<T> {
   Status? status;
 
   T? data;
-  // List<T>? dataList;
 
   String? message;
 
