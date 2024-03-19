@@ -15,14 +15,6 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-
-  // @override
-  // void dispose() {
-  //   var authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-  //   authViewModel.disposeData();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     var authViewModel = Provider.of<AuthViewModel>(context);
@@ -40,9 +32,7 @@ class _AuthViewState extends State<AuthView> {
                 Icons.person,
                 size: 100,
               ),
-
               const SizedBox(height: 50),
-
               const Text(
                 'Welcome back you\'ve been missed!',
                 style: TextStyle(
@@ -50,19 +40,15 @@ class _AuthViewState extends State<AuthView> {
                   fontSize: 16,
                 ),
               ),
-
               const SizedBox(height: 25),
-
               AppTextField(
                 controller: authViewModel.emailController,
-                hintText: 'Email',
+                hintText: 'Username',
                 obscureText: false,
                 textInputType: TextInputType.emailAddress,
                 // validator: (email) => Validator.validateEmail(email),
               ),
-
               const SizedBox(height: 10),
-
               AppTextField(
                 controller: authViewModel.passwordController,
                 hintText: 'Password',
@@ -70,7 +56,6 @@ class _AuthViewState extends State<AuthView> {
                 showSuffixIcon: true,
                 // validator: (pass) => Validator.validatePassword(pass),
               ),
-
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -84,24 +69,22 @@ class _AuthViewState extends State<AuthView> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 20),
-
               AppButton(
-                text: "Sign In",
+                text: "Login",
                 isLoading: authViewModel.loading,
                 onTap: () {
-                      // Map data = {
-                      //   'email' : _emailController.text.toString(),
-                      //   'password' : _passwordController.text.toString(),
-                      // };
+                  // Map data = {
+                  //   'username' : 'mor_2314',
+                  //   'password' : "83r5^_",
+                  // };
 
-                      Map data = {
-                        'username' : 'mor_2314',
-                        'password' : "83r5^_",
-                      };
-                      authViewModel.loginApi(data);
-
+                  Map data = {
+                    'username': authViewModel.emailController.text.toString(),
+                    'password':
+                        authViewModel.passwordController.text.toString(),
+                  };
+                  authViewModel.loginApi(data);
                 },
               ),
               const SizedBox(height: 20),
@@ -117,7 +100,6 @@ class _AuthViewState extends State<AuthView> {
                     onTap: () {
                       // provider.toggle();
                       Navigator.pushNamed(context, RoutesName.registerView);
-
                     },
                     child: Text(
                       "Register Now",
